@@ -12,16 +12,23 @@ module.exports = {
   output: {
     publicPath: "auto",
   },
+  resolve: {
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
+        test: /\.ts(x?)$/,
+        use: "ts-loader",
         exclude: /node_modules/,
-        options: {
-          presets: ["@babel/preset-react"],
-        },
       },
+      // {
+      //   test: /bootstrap\.tsx$/,
+      //   loader: "bundle-loader",
+      //   options: {
+      //     lazy: true,
+      //   },
+      // },
     ],
   },
   plugins: [
