@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
+const { TuneDtsPlugin } = require('@efox/emp-tune-dts-plugin');
 
 module.exports = {
   entry: "./src/index",
@@ -22,13 +23,6 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      // {
-      //   test: /bootstrap\.tsx$/,
-      //   loader: "bundle-loader",
-      //   options: {
-      //     lazy: true,
-      //   },
-      // },
     ],
   },
   plugins: [
@@ -44,5 +38,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new TuneDtsPlugin({
+      output: path.join('./dist', 'index.d.ts'),
+      path: './dist',
+      name: 'index.d.ts',
+      isDefault:true,
+      // 传入函数自定义操作
+      operation: (fileData) => fileData
+    })
   ],
 };
