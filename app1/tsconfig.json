@@ -11,7 +11,7 @@
       "allowJs": true,
       "allowSyntheticDefaultImports": true,
       "paths": {
-        "app2/*": ["./src/types/app2/*"] // Wherever you want to put
+        "*": ["*", "./src/types/*"]
       }
     },
     "include": ["src"]
